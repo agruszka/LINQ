@@ -15,7 +15,8 @@ namespace ConsoleLinqToObjects
             string path = @"C:\Windows\";
             //GetFilesNamesAndSizeWithoutLinq(path);
             //GetCulturesWithCommaSeparatorWithoutLinq();
-            GetCulturesWithCommaSeparatorUsingLinq();
+            //GetCulturesWithCommaSeparatorUsingLinq();
+            GetCulturesWithDotSeparatorUsingLinq();
             Console.ReadLine();
         }
         private static void GetCulturesWithCommaSeparatorWithoutLinq()
@@ -44,6 +45,23 @@ namespace ConsoleLinqToObjects
             }
 
             Console.WriteLine($"{culturesWithCommaSeparator.Count()} ustawień kulturowych korzysta z przecinka jako separatora dziesiętnego");
+        }
+            
+        private static void GetCulturesWithDotSeparatorUsingLinq()
+        {
+            var availableCultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+
+            var culturesWithDotSeparator = from ci in availableCultures
+                                             where ci.NumberFormat.CurrencyDecimalSeparator.Equals(".")
+                                             orderby ci.DisplayName
+                                             select ci;
+
+            foreach (var ci in culturesWithDotSeparator)
+            {
+                Console.WriteLine($"{ci.DisplayName}");
+            }
+
+            Console.WriteLine($"{culturesWithDotSeparator.Count()} ustawień kulturowych korzysta z kropki jako separatora dziesiętnego");
         }
         private static void GetFilesNamesAndSizeWithoutLinq(string path)
         {
