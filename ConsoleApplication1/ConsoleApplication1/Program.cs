@@ -16,7 +16,8 @@ namespace ConsoleLinqToObjects
             //GetFilesNamesAndSizeWithoutLinq(path);
             //GetCulturesWithCommaSeparatorWithoutLinq();
             //GetCulturesWithCommaSeparatorUsingLinq();
-            GetCulturesWithDotSeparatorUsingLinq();
+            //GetCulturesWithDotSeparatorUsingLinq();
+            GetNameOfDaysUsingLinq();
             Console.ReadLine();
         }
         private static void GetCulturesWithCommaSeparatorWithoutLinq()
@@ -62,6 +63,35 @@ namespace ConsoleLinqToObjects
             }
 
             Console.WriteLine($"{culturesWithDotSeparator.Count()} ustawień kulturowych korzysta z kropki jako separatora dziesiętnego");
+
+        }
+        private static void GetNameOfDaysUsingLinq()
+
+        {
+            {
+
+                /* Lambda*/
+                var availableCultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+                var albanianCulture = availableCultures.Where(c => c.DisplayName.Contains("Alban")).First();
+
+                /* Inna wersja zamiast lambdy - linq*/
+                var anotherAlbanian = from ci in availableCultures
+                                      where ci.DisplayName.Contains("Alban")
+                                      select ci;
+
+                var anotherDayNames = anotherAlbanian.First();
+
+                var dayNames = albanianCulture.DateTimeFormat.DayNames;
+
+                foreach (var dayName in dayNames)
+                {
+                    Console.WriteLine(dayName);
+                }
+
+            }
+
+
+
         }
         private static void GetFilesNamesAndSizeWithoutLinq(string path)
         {
@@ -84,6 +114,8 @@ namespace ConsoleLinqToObjects
                 Console.WriteLine($"{fi.Name,-25} size: {fi.Length,10:N0}");
             }
         }
+
+
     }
 
 
