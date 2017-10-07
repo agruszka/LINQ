@@ -17,9 +17,15 @@ namespace ConsoleLinqToObjects
             //GetCulturesWithCommaSeparatorWithoutLinq();
             //GetCulturesWithCommaSeparatorUsingLinq();
             //GetCulturesWithDotSeparatorUsingLinq();
-            GetNameOfDaysUsingLinq();
+            GetNameOfDaysUsingLinq(path);
             Console.ReadLine();
         }
+
+        private static void GetNameOfDaysUsingLinq(string path)
+        {
+            throw new NotImplementedException();
+        }
+
         private static void GetCulturesWithCommaSeparatorWithoutLinq()
         {
             var availableCultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
@@ -78,10 +84,11 @@ namespace ConsoleLinqToObjects
                 var anotherAlbanian = from ci in availableCultures
                                       where ci.DisplayName.Contains("Alban")
                                       select ci;
+         
 
                 var anotherDayNames = anotherAlbanian.First();
 
-                var dayNames = albanianCulture.DateTimeFormat.DayNames;
+                var dayNames = albanianCulture.DateTimeFormat.FullDateTimePattern;
 
                 foreach (var dayName in dayNames)
                 {
