@@ -20,7 +20,8 @@ namespace ConsoleLinqToObjects
             //GetNameOfDaysUsingLinq();
             //GetNameOfDatesUsingLinq();
             //ShowFibonacciNumbers();
-            ShowFibonacciSecondNumbers();
+            //ShowFibonacciSecondNumbers();
+            TakeTwoNextNumbers();
             Console.ReadLine();
         }
 
@@ -161,10 +162,33 @@ namespace ConsoleLinqToObjects
                 Console.WriteLine(number);
             }
         }
+        private static void TakeTwoNextNumbers()
+        {
+            int[] fibonacci = { 0, 1, 1, 2, 3, 5 };
+            // query created, and immediately executed
+            var TakeNextNumbers = fibonacci.Skip(2).Take(2);
+      
+            foreach (var number in TakeNextNumbers)
+            {
+                Console.WriteLine(number);
+            }
+        }
     }
-  
+    public class Employee
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public decimal Salary { get; set; }
+        public DateTime HireDate { get; set; }
+    }
+    private static void Filtering()
+    {
+    }
 
 
+}
+private static void Filtering()
+{
 }
 public class FileSizeComparer : IComparer<FileInfo>
     {
