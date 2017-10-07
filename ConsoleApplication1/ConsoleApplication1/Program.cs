@@ -17,7 +17,8 @@ namespace ConsoleLinqToObjects
             //GetCulturesWithCommaSeparatorWithoutLinq();
             //GetCulturesWithCommaSeparatorUsingLinq();
             //GetCulturesWithDotSeparatorUsingLinq();
-            GetNameOfDaysUsingLinq(path);
+            //GetNameOfDaysUsingLinq();
+            GetNameOfDatesUsingLinq();
             Console.ReadLine();
         }
 
@@ -98,6 +99,20 @@ namespace ConsoleLinqToObjects
             }
 
 
+
+        }
+        private static void GetNameOfDatesUsingLinq()
+
+        {
+            var availableCultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+            var test = from ci in availableCultures
+                       select ci.DateTimeFormat.FullDateTimePattern;
+            var dates = test.Distinct();
+            foreach (var DistinctDate in dates)
+
+            {
+                Console.WriteLine(DistinctDate);
+            }
 
         }
         private static void GetFilesNamesAndSizeWithoutLinq(string path)
