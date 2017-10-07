@@ -18,7 +18,9 @@ namespace ConsoleLinqToObjects
             //GetCulturesWithCommaSeparatorUsingLinq();
             //GetCulturesWithDotSeparatorUsingLinq();
             //GetNameOfDaysUsingLinq();
-            GetNameOfDatesUsingLinq();
+            //GetNameOfDatesUsingLinq();
+            //ShowFibonacciNumbers();
+            ShowFibonacciSecondNumbers();
             Console.ReadLine();
         }
 
@@ -137,12 +139,34 @@ namespace ConsoleLinqToObjects
             }
         }
 
-
+        private static void ShowFibonacciNumbers()
+        {
+            int[] fibonacci = { 0, 1, 1, 2, 3, 5 };
+            // query created, and immediately executed
+            var numbersGreaterThanTwo = fibonacci.Where(x => x > 2).ToArray();
+            fibonacci[0] = 99;
+            foreach (var number in numbersGreaterThanTwo)
+            {
+                Console.WriteLine(number);
+            }
+        }
+        private static void ShowFibonacciSecondNumbers()
+        {
+            int[] fibonacci = { 0, 1, 1, 2, 3, 5 };
+            // query created, and immediately executed
+            var SecondNumbers = fibonacci.Where((x, i) => i % 2 != 0).ToArray();
+            fibonacci[0] = 99;
+            foreach (var number in SecondNumbers)
+            {
+                Console.WriteLine(number);
+            }
+        }
     }
+  
 
 
-    }
-    public class FileSizeComparer : IComparer<FileInfo>
+}
+public class FileSizeComparer : IComparer<FileInfo>
     {
         public int Compare(FileInfo x, FileInfo y)
         {
